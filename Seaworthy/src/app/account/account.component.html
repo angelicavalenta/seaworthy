@@ -1,6 +1,42 @@
-<form novalidate class="simple-form">
-  <label>Name: <input type="text" ng-model="user.name" /></label><br />
-  <label>E-mail: <input type="email" ng-model="user.email" /></label><br />
-  <input type="button" ng-click="reset()" value="Reset" />
-  <input type="submit" ng-click="update(user)" value="Save" />
+
+<form>
+  <md-input-container>
+    <input mdInput placeholder="Company Name">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="EIN">
+  </md-input-container>
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Email" [formControl]="emailFormControl">
+    <md-error *ngIf="emailFormControl.hasError('pattern')">
+      Please enter a valid email
+    </md-error>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="Address">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="City">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="State" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+  </md-input-container>
+  <md-autocomplete #auto="mdAutocomplete">
+    <md-option *ngFor="let state of filteredStates | async" [value]="state">
+      {{ state }}
+    </md-option>
+  </md-autocomplete>
+  <md-input-container>
+    <input mdInput placeholder="Postal Code">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="First Name">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="Last Name">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="Phone Number">
+  </md-input-container>
+  <button (click)="submitForm()" md-button>Save</button>
 </form>

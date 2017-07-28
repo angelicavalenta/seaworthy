@@ -1,0 +1,19 @@
+<form>
+  <md-input-container>
+    <input mdInput placeholder="Origin Port" [mdAutocomplete]="auto" [formControl]="oPortCtrl">
+  </md-input-container>
+  <md-autocomplete #auto="mdAutocomplete">
+    <md-option *ngFor="let Oport of filteredOPorts | async" [value]="Oport">
+      {{ Oport }}
+    </md-option>
+  </md-autocomplete>
+  <md-input-container>
+    <input mdInput placeholder="Destination Port" [mdAutocomplete]="autoD" [formControl]="dPortCtrl">
+  </md-input-container>
+  <md-autocomplete #autoD="mdAutocomplete">
+    <md-option *ngFor="let Dport of filteredDPorts | async" [value]="Dport">
+      {{ Dport }}
+    </md-option>
+  </md-autocomplete>
+  <button (click)="bookForm()" md-button>Book</button>
+</form>
